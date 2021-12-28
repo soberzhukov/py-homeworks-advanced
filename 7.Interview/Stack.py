@@ -55,12 +55,18 @@ class Stack:
                         return "Несбалансированно"
                     else:
                         return "Сбалансированно"
+
             if self.peek() in inversion_dict:
-                counter_dict[inversion_dict[self.pop()]] -= 1
+                last_el = self.pop()
+                counter_dict[inversion_dict[last_el]] -= 1
+
+                if counter_dict[inversion_dict[last_el]] < 0:
+                    return "Несбалансированно"
+
             else:
                 counter_dict[self.pop()] += 1
 
 
 test_stack = Stack()
-test_stack.elements = '(((([{}]))))'
+test_stack.elements = '(((([}{]))))'
 print(test_stack.balanced())
